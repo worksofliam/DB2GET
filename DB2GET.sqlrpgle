@@ -16,6 +16,7 @@
        Dcl-S gFile SQLTYPE(BLOB_FILE);
 
        If (pURL = *Blank OR pPath = *Blank);
+         DSPLY ('URL or path blank');
          Return;
        ENDIF;
 
@@ -28,5 +29,7 @@
          SELECT SYSTOOLS.HTTPGETBLOB(:gURL, '') gFile_DATA
          INTO :gFile
          FROM SYSIBM.SYSDUMMY1;
+
+       DSPLY ('Download finished. SQLSTATE: ' + SQLSTATE);
 
        Return;
